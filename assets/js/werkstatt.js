@@ -1,7 +1,7 @@
 /*
  * Werkstatt-Preisliste
  * Renders the filterable, sortable price list on werkstatt.html from
- * "PAM PREISE CSV - Homepage.csv" (loaded by preise-csv.js).
+ * "PAM PREISE CSV - Werkstatt.csv" (loaded by preise-csv.js).
  * Edit the CSV to change prices - no HTML changes needed.
  */
 document.addEventListener("DOMContentLoaded", function () {

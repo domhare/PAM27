@@ -1,9 +1,9 @@
 /*
- * Shared loader for "PAM PREISE CSV - Homepage.csv" (columns: Name, Preis, Gruppe).
+ * Shared loader for "PAM PREISE CSV - Werkstatt.csv" (columns: Name, Preis, Gruppe).
  * Used by werkstatt.js (price list) and marquee.js (scrolling text band on the home page).
  */
 window.PreiseCSV = (function () {
-    const URL = "PAM PREISE CSV - Homepage.csv";
+    const URL = "PAM PREISE CSV - Werkstatt.csv";
 
     // Minimal CSV parser: handles quoted fields containing commas, e.g. "13,00/h"
     function parse(text) {
