@@ -1,8 +1,8 @@
 /*
- * Werkstatt-Preisliste
- * Renders the filterable, sortable price list on werkstatt.html from
- * "PAM PREISE CSV - Werkstatt.csv" (loaded by preise-csv.js).
- * Edit the CSV to change prices - no HTML changes needed.
+ * Werkstatt-Preisliste / Teileshop
+ * Renders the filterable, sortable price list on werkstatt.html and teileshop.html.
+ * The CSV comes from the list's data-csv attribute (default: "PAM PREISE CSV - Werkstatt.csv",
+ * loaded by preise-csv.js). Edit the CSV to change prices - no HTML changes needed.
  */
 document.addEventListener("DOMContentLoaded", function () {
     const PER_PAGE = 24;
@@ -22,7 +22,19 @@ document.addEventListener("DOMContentLoaded", function () {
         "Elektro": "fa-bolt",
         "Druckluft": "fa-wind",
         "Spezialwerkzeug": "fa-screwdriver-wrench",
-        "Shop": "fa-cart-shopping"
+        "Shop": "fa-cart-shopping",
+        // Teileshop
+        "Flüssigkeiten": "fa-oil-can",
+        "Abgasanlage": "fa-pipe-section",
+        "Befestigungsmaterial": "fa-screwdriver",
+        "Beleuchtung": "fa-lightbulb",
+        "Bohrer & Werkzeuge": "fa-screwdriver-wrench",
+        "Chemie & Additive": "fa-flask",
+        "Elektrik": "fa-car-battery",
+        "Klebe- & Dichtmittel": "fa-fill-drip",
+        "Rostschutz & Lack": "fa-spray-can",
+        "Schmierstoffe": "fa-droplet",
+        "Werkstattbedarf": "fa-toolbox"
     };
     const UNITS = { h: "Std.", d: "Tag" };
 
@@ -32,17 +44,15 @@ document.addEventListener("DOMContentLoaded", function () {
     const countText = document.getElementById("werkzeug-anzahl");
     const sortSelect = document.getElementById("werkzeug-sortierung");
     const pager = document.getElementById("werkzeug-seiten");
-    const minSlider = document.getElementById("min-slider");
-    const maxSlider = document.getElementById("max-slider");
-    const amount = document.getElementById("amount");
 
     let items = [];
     let page = 1;
     let activeGroup = "Alle";
 
-    // "13,00/h" -> { value: 13, label: "13,00 €", unit: "Std." }
+    // "13,00/h" or "16,49 €" -> { value: 13, label: "13,00 €", unit: "Std." }
     function parsePrice(raw) {
-        const [num, unit] = raw.trim().split("/");
+        const [rawNum, unit] = raw.trim().split("/");
+        const num = rawNum.replace("€", "").trim();
         return {
             value: parseFloat(num.replace(".", "").replace(",", ".")) || 0,
             label: num + " €",
@@ -57,29 +67,8 @@ document.addEventListener("DOMContentLoaded", function () {
         return node;
     }
 
-    function euro(n) {
-        return n.toLocaleString("de-DE") + " €";
-    }
-
-    function priceRange() {
-        const a = parseFloat(minSlider.value), b = parseFloat(maxSlider.value);
-        return [Math.min(a, b), Math.max(a, b)];
-    }
-
-    function updateSliderLabel() {
-        const [lo, hi] = priceRange();
-        amount.value = euro(lo) + " – " + euro(hi);
-        const span = maxSlider.max - maxSlider.min;
-        const p1 = ((lo - maxSlider.min) / span) * 100;
-        const p2 = ((hi - maxSlider.min) / span) * 100;
-        const track = `linear-gradient(to right, var(--gt-header) ${p1}%, var(--gt-theme) ${p1}%, var(--gt-theme) ${p2}%, var(--gt-header) ${p2}%)`;
-        minSlider.style.background = track;
-        maxSlider.style.background = track;
-    }
-
     function filtered() {
-        const [lo, hi] = priceRange();
-        const result = items.filter(it => (activeGroup === "Alle" || it.group === activeGroup) && it.price.value >= lo && it.price.value <= hi);
+        const result = items.filter(it => activeGroup === "Alle" || it.group === activeGroup);
         switch (sortSelect.value) {
             case "preis-auf": result.sort((a, b) => a.price.value - b.price.value); break;
             case "preis-ab": result.sort((a, b) => b.price.value - a.price.value); break;
@@ -95,6 +84,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const content = el("div", "gt-werkzeug-content");
         content.appendChild(el("span", "gt-werkzeug-group", it.group));
         content.appendChild(el("h4", "", it.name));
+        if (it.desc) content.appendChild(el("p", "gt-werkzeug-desc", it.desc));
         const price = el("div", "gt-werkzeug-price", it.price.label);
         if (it.price.unit) price.appendChild(el("small", "", "/ " + it.price.unit));
         card.append(icon, content, price);
@@ -133,7 +123,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         list.innerHTML = "";
         if (!shown.length) {
-            list.appendChild(el("p", "gt-werkzeug-empty", "Keine Werkzeuge für diese Auswahl gefunden."));
+            list.appendChild(el("p", "gt-werkzeug-empty", "Keine Artikel für diese Auswahl gefunden."));
         } else {
             shown.forEach(it => list.appendChild(renderItem(it)));
         }
@@ -180,19 +170,6 @@ document.addEventListener("DOMContentLoaded", function () {
         syncCategoryList();
     }
 
-    function setupSlider() {
-        const max = Math.ceil(Math.max(...items.map(it => it.price.value)));
-        [minSlider, maxSlider].forEach(s => { s.min = 0; s.max = max; s.step = 0.5; });
-        minSlider.value = 0;
-        maxSlider.value = max;
-        // main.js also listens and writes "$" labels; ours run afterwards and win
-        [minSlider, maxSlider].forEach(s => s.addEventListener("input", function () {
-            updateSliderLabel();
-            update();
-        }));
-        updateSliderLabel();
-    }
-
     // Grid / list toggle
     document.querySelectorAll(".gt-shop-showing [data-view]").forEach(link => {
         link.addEventListener("click", function (e) {
@@ -206,11 +183,10 @@ document.addEventListener("DOMContentLoaded", function () {
     if (window.jQuery) jQuery(sortSelect).on("change", update);
     else sortSelect.addEventListener("change", update);
 
-    PreiseCSV.load()
+    PreiseCSV.load(list.dataset.csv)
         .then(rows => {
-            items = rows.map(r => ({ name: r.name, price: parsePrice(r.preis), group: r.gruppe }));
+            items = rows.map(r => ({ name: r.name, price: parsePrice(r.preis), group: r.gruppe, desc: r.beschreibung }));
             buildFilters();
-            setupSlider();
             render();
         })
         .catch(() => {

@@ -4039,6 +4039,21 @@ span {
     width: 130px;
   }
 }
+/* Meisterhaft logo has a different aspect ratio: match the height of the default logo instead of its width */
+.header-1.bg-theme .header-logo1 img.logo-meisterhaft {
+  width: auto;
+  height: 78px;
+}
+@media (max-width: 767px) {
+  .header-1.bg-theme .header-logo1 img.logo-meisterhaft {
+    height: 70px;
+  }
+}
+@media (max-width: 575px) {
+  .header-1.bg-theme .header-logo1 img.logo-meisterhaft {
+    height: 50px;
+  }
+}
 .header-1 .header-main {
   padding: 0;
 }
@@ -8950,6 +8965,11 @@ span {
 .gt-werkzeug-content h4 {
   font-size: 18px;
   text-transform: none;
+}
+.gt-werkzeug-desc {
+  margin-top: 6px;
+  font-size: 15px;
+  line-height: 1.6;
 }
 .gt-werkzeug-price {
   flex-shrink: 0;

@@ -1,9 +1,10 @@
 /*
- * Shared loader for "PAM PREISE CSV - Werkstatt.csv" (columns: Name, Preis, Gruppe).
- * Used by werkstatt.js (price list) and marquee.js (scrolling text band on the home page).
+ * Shared loader for the price CSVs (columns: Name, Preis, Gruppe, optional Beschreibung).
+ * Used by werkstatt.js (price lists on werkstatt.html and teileshop.html) and
+ * marquee.js (scrolling text band on the home page).
  */
 window.PreiseCSV = (function () {
-    const URL = "PAM PREISE CSV - Werkstatt.csv";
+    const DEFAULT_URL = "PAM PREISE CSV - Werkstatt.csv";
 
     // Minimal CSV parser: handles quoted fields containing commas, e.g. "13,00/h"
     function parse(text) {
@@ -29,9 +30,9 @@ window.PreiseCSV = (function () {
         return rows;
     }
 
-    // Resolves to [{ name, preis, gruppe }] in CSV order
-    function load() {
-        return fetch(encodeURI(URL))
+    // Resolves to [{ name, preis, gruppe, beschreibung }] in CSV order
+    function load(url) {
+        return fetch(encodeURI(url || DEFAULT_URL))
             .then(res => {
                 if (!res.ok) throw new Error(res.status);
                 return res.text();
@@ -39,11 +40,13 @@ window.PreiseCSV = (function () {
             .then(text => {
                 const rows = parse(text.replace(/^﻿/, ""));
                 const header = rows.shift().map(h => h.trim().toLowerCase());
-                const iName = header.indexOf("name"), iPrice = header.indexOf("preis"), iGroup = header.indexOf("gruppe");
+                const iName = header.indexOf("name"), iPrice = header.indexOf("preis"), iGroup = header.indexOf("gruppe"),
+                    iDesc = header.indexOf("beschreibung");
                 return rows.map(r => ({
                     name: (r[iName] || "").trim(),
                     preis: (r[iPrice] || "0").trim(),
-                    gruppe: (r[iGroup] || "Sonstiges").trim()
+                    gruppe: (r[iGroup] || "Sonstiges").trim(),
+                    beschreibung: iDesc < 0 ? "" : (r[iDesc] || "").trim()
                 })).filter(it => it.name);
             });
     }
