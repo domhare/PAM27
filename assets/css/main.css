@@ -1906,6 +1906,127 @@ span {
   font-weight: 600;
   text-decoration: underline;
 }
+/* Serviceanfrage (serviceanfrage.html): light card, white fields with the theme's
+   light-background input border (as used by the checkout form) */
+.gt-service-form {
+  --gt-input-border: #E4E4E5;
+}
+.gt-service-form .form-clt input,
+.gt-service-form .form-clt textarea {
+  border: 1px solid var(--gt-input-border);
+}
+.gt-service-form .form-clt input:focus,
+.gt-service-form .form-clt textarea:focus {
+  border-color: var(--gt-theme);
+}
+.gt-service-form .form-clt input[type=file] {
+  padding: 12px 20px;
+  cursor: pointer;
+}
+.gt-service-form-block {
+  margin-bottom: 48px;
+}
+.gt-service-form-title {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 22px;
+  text-transform: none;
+  margin-bottom: 30px;
+}
+/* Serviceanfrage: the three tabs above the card share its full width equally */
+.gt-contact-section .gt-anfrage-tabs .nav-item {
+  flex: 1;
+}
+.gt-contact-section .gt-anfrage-tabs .nav-item .nav-link {
+  width: 100%;
+  justify-content: center;
+}
+.gt-anfrage-form h4.gt-service-form-title {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+.gt-service-form-title::before {
+  content: "";
+  flex-shrink: 0;
+  width: 28px;
+  height: 18px;
+  background: linear-gradient(90deg, var(--gt-yellow) 0 40%, transparent 40% 60%, var(--gt-theme) 60%);
+  transform: skewX(-25deg);
+}
+.gt-service-form-tabs {
+  gap: 32px;
+  margin-bottom: 30px;
+}
+.gt-service-form-tabs .nav-link {
+  padding: 0;
+  color: var(--gt-text);
+  font-size: 16px;
+  font-weight: 700;
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+.gt-service-form-tabs .nav-link.active, .gt-service-form-tabs .nav-link:hover {
+  color: var(--gt-theme);
+}
+.gt-service-form-hint {
+  margin-top: 20px;
+  margin-bottom: 0;
+}
+.gt-service-form-hint strong {
+  color: var(--gt-header);
+}
+.gt-service-form-checks {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 16px 20px;
+}
+.gt-service-form-checks label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--gt-header);
+  font-weight: 600;
+  line-height: 1.3;
+  cursor: pointer;
+}
+.gt-service-form-checks .icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--gt-theme);
+  border-radius: 4px;
+  background-color: var(--gt-white);
+  color: var(--gt-theme);
+  font-size: 20px;
+  transition: all 0.4s ease-in-out;
+}
+.gt-service-form-checks label:hover .icon,
+.gt-service-form-checks label:has(input:checked) .icon {
+  background-color: var(--gt-theme);
+  color: var(--gt-white);
+}
+.gt-service-form-checks input,
+.gt-service-form-consent input {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  accent-color: var(--gt-theme);
+}
+.gt-service-form-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  cursor: pointer;
+}
+.gt-service-form-consent input {
+  margin-top: 4px;
+}
+.gt-service-form .contact-btn {
+  text-align: left;
+}
 .gt-anfrage-sidebar {
   display: grid;
   gap: 24px;
@@ -4062,6 +4183,17 @@ span {
     padding: 10px 0;
   }
 }
+/* Desktop: the right block (top bar + menu) starts a fixed distance after the logo instead of
+   taking only its content width; menu stays left, buttons stay at the right edge */
+@media (min-width: 1400px) {
+  .header-1 .header-main-right-item {
+    flex: 1;
+    margin-left: 100px;
+  }
+  .header-1 .header-main-right-item .header-right-area {
+    justify-content: space-between;
+  }
+}
 .header-1 .header-logo-2 {
   display: none;
 }
@@ -4191,10 +4323,27 @@ span {
   cursor: pointer;
 }
 .header-1 .header-main-right-item .head-top-wrapper {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 9px 0 12px;
+}
+/* Blue top bar: starts 40px before the address text (was a fixed 27% of the header) and runs to the right edge */
+.header-1.bg-theme::before {
+  display: none;
+}
+.header-1.bg-theme .header-main-right-item .head-top-wrapper::before {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -40px;
+  right: 0;
+  content: "";
+  z-index: -1;
+  background-color: var(--gt-theme);
+  box-shadow: 0 0 0 100vmax var(--gt-theme);
+  clip-path: inset(0 -100vmax 0 0);
 }
 @media (max-width: 1399px) {
   .header-1 .header-main-right-item .head-top-wrapper {
@@ -7849,6 +7998,15 @@ span {
 .gt-section-title span img:last-child {
   margin-left: 10px;
 }
+/* Chevron icon in place of the subtitle image */
+.gt-section-title span i,
+.gt-hero-content h6 i {
+  margin-right: 10px;
+}
+.gt-section-title span i:last-child:not(:first-child) {
+  margin-right: 0;
+  margin-left: 10px;
+}
 .gt-section-title span.gt-style-3 {
   border: 1px solid var(--gt-theme);
   padding: 8px 16px;
@@ -7971,16 +8129,16 @@ span {
   font-family: "Plus Jakarta Sans", sans-serif;
   color: var(--gt-header);
   position: absolute;
-  right: 53px;
+  /* Vertical text centred in the 55px strip, independent of the label length */
+  right: 0;
   top: 0;
   bottom: 0;
-  transform: rotate(90deg);
+  width: 55px;
+  padding-top: 24px;
+  display: flex;
+  align-items: center;
+  writing-mode: vertical-rl;
   z-index: 9;
-}
-@media (max-width: 1399px) {
-  .gt-service-card-items .gt-thumb .gt-link-btn {
-    right: 37px;
-  }
 }
 @media (max-width: 1199px) {
   .gt-service-card-items .gt-thumb .gt-link-btn {
@@ -7988,7 +8146,10 @@ span {
   }
 }
 .gt-service-card-items .gt-thumb .gt-link-btn i {
-  margin-left: 8px;
+  /* Icon glyphs stay upright in vertical text, so turn them like the letters */
+  display: inline-block;
+  margin-top: 8px;
+  transform: rotate(90deg);
   color: var(--gt-theme);
 }
 .gt-service-card-items .gt-content {
