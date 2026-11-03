@@ -141,8 +141,8 @@
                 <div class="offcanvas__content">
                     <div class="offcanvas__top mb-5 d-flex justify-content-between align-items-center">
                         <div class="offcanvas__logo">
-                            <a href="index.html">
-                                <img src="assets/img/logo/black-logo-2.svg" alt="logo-img">
+                            <a href="index-1.html">
+                                <img src="assets/img/home-1/meisterhaftlogo.svg" alt="KFZ-Service Buila – Meisterhaft">
                             </a>
                         </div>
                         <div class="offcanvas__close">
@@ -181,7 +181,7 @@
                                     <i class="fal fa-clock"></i>
                                 </div>
                                 <div class="offcanvas__contact-text">
-                                    <a href="#servicezeiten">Mo - Do: 09:00 - 12:00 / 13:00 - 18:00 Uhr<br>Fr: 09:00 -
+                                    <a href="index-1.html#servicezeiten">Mo - Do: 09:00 - 12:00 / 13:00 - 18:00 Uhr<br>Fr: 09:00 -
                                         12:00 / 13:00 - 15:30 Uhr</a>
                                 </div>
                             </li>
@@ -205,8 +205,8 @@
                         <div class="social-icon d-flex align-items-center">
                             <a href="#"><i class="fab fa-facebook-f"></i></a>
                             <a href="#"><i class="fab fa-twitter"></i></a>
-                            <a href="#"><i class="fab fa-youtube"></i></a>
-                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fab fa-vimeo-v"></i></a>
+                            <a href="#"><i class="fab fa-pinterest-p"></i></a>
                         </div>
                     </div>
                 </div>
@@ -393,403 +393,390 @@
         </div>
     </div>
 
-    <!-- GT Contact Section Start -->
-    <section class="gt-contact-section section-padding fix pb-0">
+    <!-- GT Serviceanfrage (Buchungsformular in 5 Schritten) Start -->
+    <section class="gt-booking-section section-padding fix">
         <div class="container">
-            <ul class="nav gt-anfrage-tabs" role="tablist">
-                <li class="nav-item">
-                    <a href="#serviceanfrage" data-bs-toggle="tab" class="nav-link active" role="tab">
-                        <i class="fa-solid fa-screwdriver-wrench"></i> Serviceanfrage
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#ersatzteilanfrage" data-bs-toggle="tab" class="nav-link" role="tab">
-                        <i class="fa-solid fa-gears"></i> Ersatzteilanfrage
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#huauanfrage" data-bs-toggle="tab" class="nav-link" role="tab">
-                        <i class="fa-solid fa-clipboard-check"></i> Anmeldung HU/AU
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </section>
 
-    <!-- GT Contact us Section Start -->
-    <section class="gt-contact-us-section pb-0 fix">
-        <div class="container">
-            <div class="gt-contact-us-wrapper gt-service-form">
-                <h2>Ihre Anfrage</h2>
-                <div class="tab-content">
+            <!-- Schrittzähler -->
+            <div class="gt-service-steps">
+                <ol>
+                    <li class="is-active" data-goto="1">
+                        <span class="num">1</span>
+                        <span class="label">Fahrzeug</span>
+                    </li>
+                    <li data-goto="2">
+                        <span class="num">2</span>
+                        <span class="label">Service</span>
+                    </li>
+                    <li data-goto="3">
+                        <span class="num">3</span>
+                        <span class="label">Datum und Uhrzeit</span>
+                    </li>
+                    <li data-goto="4">
+                        <span class="num">4</span>
+                        <span class="label">Ihre Informationen</span>
+                    </li>
+                    <li data-goto="5">
+                        <span class="num">5</span>
+                        <span class="label">Zusammenfassung</span>
+                    </li>
+                </ol>
+            </div>
 
-                    <!-- Serviceanfrage -->
-                    <div id="serviceanfrage" class="tab-pane fade show active" role="tabpanel">
-                        <form action="#" method="POST" enctype="multipart/form-data">
-                            <input type="hidden" name="subject" value="Serviceanfrage">
+            <form action="#" method="POST" enctype="multipart/form-data" id="serviceanfrage-form" class="gt-booking"
+                novalidate>
+                <input type="hidden" name="subject" value="Serviceanfrage">
+                <div class="gt-booking-layout">
+                    <div class="gt-booking-main">
 
-                            <!-- Informationen zum Fahrzeug -->
-                            <div class="gt-service-form-block">
-                                <h4 class="gt-service-form-title">Informationen zum Fahrzeug</h4>
-                                <ul class="nav gt-service-form-tabs" role="tablist">
-                                    <li class="nav-item">
-                                        <a href="#fahrzeug-schluessel" data-bs-toggle="tab" class="nav-link active"
-                                            role="tab">Schlüsselnummern</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="#fahrzeug-bild" data-bs-toggle="tab" class="nav-link"
-                                            role="tab">Bilddatei</a>
-                                    </li>
-                                </ul>
-                                <div class="tab-content">
-                                    <div id="fahrzeug-schluessel" class="tab-pane fade show active" role="tabpanel">
-                                        <div class="row g-4">
-                                            <div class="col-md-4">
-                                                <div class="form-clt">
-                                                    <span>Erstzulassung</span>
-                                                    <input type="text" name="erstzulassung" id="sa-erstzulassung"
-                                                        placeholder="TT.MM.JJJJ">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-clt">
-                                                    <span>HSN</span>
-                                                    <input type="text" name="hsn" id="sa-hsn" placeholder="z. B. 0005"
-                                                        maxlength="4">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-clt">
-                                                    <span>TSN</span>
-                                                    <input type="text" name="tsn" id="sa-tsn" placeholder="z. B. ABC"
-                                                        maxlength="3">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div id="fahrzeug-bild" class="tab-pane fade" role="tabpanel">
-                                        <div class="form-clt">
-                                            <span>Fahrzeugschein</span>
-                                            <input type="file" name="fahrzeugschein" id="sa-fahrzeugschein"
-                                                accept="image/*,.pdf">
-                                        </div>
-                                    </div>
-                                </div>
-                                <p class="gt-service-form-hint">
-                                    Für Inspektions- und Wartungsarbeiten benötigen wir Angaben aus Ihrem
-                                    <strong>Fahrzeugschein</strong>. Diese können Sie entweder im Formular eingeben oder
-                                    als
-                                    Bilddatei hochladen. Sie finden sie im Fahrzeugschein unter Feld B (Erstzulassung),
-                                    2.1 (HSN) und 2.2 (TSN).
-                                </p>
-                            </div>
-
-                            <!-- Servicewunsch -->
-                            <div class="gt-service-form-block">
-                                <h4 class="gt-service-form-title">Servicewunsch</h4>
-                                <div class="gt-service-form-checks">
-                                    <label><input type="checkbox" name="servicewunsch[]" value="inspektion">
-                                        <span class="icon"><i class="fa-solid fa-car-wrench"></i></span>
-                                        Inspektion</label>
-                                    <label><input type="checkbox" name="servicewunsch[]" value="hu-au">
-                                        <span class="icon"><i class="fa-solid fa-clipboard-check"></i></span> HU /
-                                        AU</label>
-                                    <label><input type="checkbox" name="servicewunsch[]" value="bremsen">
-                                        <span class="icon"><i class="fa-solid fa-brake-warning"></i></span>
-                                        Bremsen</label>
-                                    <label><input type="checkbox" name="servicewunsch[]" value="klima-service">
-                                        <span class="icon"><i class="fa-solid fa-snowflake"></i></span>
-                                        Klima-Service</label>
-                                    <label><input type="checkbox" name="servicewunsch[]" value="motor-diagnose">
-                                        <span class="icon"><i class="fa-solid fa-laptop-medical"></i></span>
-                                        Motor-Diagnose</label>
-                                    <label><input type="checkbox" name="servicewunsch[]" value="raederwechsel">
-                                        <span class="icon"><i class="fa-solid fa-tire"></i></span> Räderwechsel</label>
-                                    <label><input type="checkbox" name="servicewunsch[]" value="elektrik">
-                                        <span class="icon"><i class="fa-solid fa-car-battery"></i></span>
-                                        Elektrik</label>
-                                    <label><input type="checkbox" name="servicewunsch[]" value="autoglas">
-                                        <span class="icon"><i class="fa-solid fa-car-side"></i></span> Autoglas</label>
-                                    <label><input type="checkbox" name="servicewunsch[]" value="kupplung">
-                                        <span class="icon"><i class="fa-solid fa-gear"></i></span> Kupplung</label>
-                                    <label><input type="checkbox" name="servicewunsch[]" value="oel-service">
-                                        <span class="icon"><i class="fa-solid fa-oil-can"></i></span> Öl-Service</label>
-                                    <label><input type="checkbox" name="servicewunsch[]" value="getriebespuelung">
-                                        <span class="icon"><i class="fa-solid fa-gears"></i></span>
-                                        Getriebespülung</label>
-                                    <label><input type="checkbox" name="servicewunsch[]" value="sonstige">
-                                        <span class="icon"><i class="fa-solid fa-question"></i></span> Sonstige</label>
-                                </div>
-                            </div>
-
-                            <!-- Kontaktdaten -->
-                            <div class="gt-service-form-block mb-0">
-                                <h4 class="gt-service-form-title">Kontaktdaten</h4>
-                                <div class="row g-4">
-                                    <div class="col-md-6">
-                                        <div class="form-clt">
-                                            <span>Vorname*</span>
-                                            <input type="text" name="vorname" id="sa-vorname" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-clt">
-                                            <span>Nachname*</span>
-                                            <input type="text" name="nachname" id="sa-nachname" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-clt">
-                                            <span>E-Mail-Adresse*</span>
-                                            <input type="email" name="email" id="sa-email" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-clt">
-                                            <span>Telefonnummer*</span>
-                                            <input type="tel" name="telefon" id="sa-telefon" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-clt">
-                                            <span>Nachricht*</span>
-                                            <textarea name="message" id="sa-nachricht" required></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <label class="gt-service-form-consent">
-                                            <input type="checkbox" name="einwilligung" value="ja" required>
-                                            Ich willige ein, dass diese Website meine übermittelten Informationen
-                                            speichert,
-                                            sodass meine Anfrage beantwortet werden kann.*
-                                        </label>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="contact-btn">
-                                            <button type="submit" class="gt-theme-btn">
-                                                <span class="gt-text-btn">
-                                                    <span class="gt-text-2">ABSENDEN</span>
-                                                </span>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-
-                    <!-- Ersatzteilanfrage -->
-                    <div id="ersatzteilanfrage" class="tab-pane fade" role="tabpanel">
-                        <form action="#" method="POST" enctype="multipart/form-data" class="gt-anfrage-form">
-                            <input type="hidden" name="subject" value="Ersatzteilanfrage">
-                            <div class="row g-4">
-                                <div class="col-12">
-                                    <h4 class="gt-service-form-title">Fahrzeugdaten</h4>
-                                </div>
-                                <div class="col-12">
+                        <!-- Schritt 1: Fahrzeug -->
+                        <div class="gt-booking-step is-active" data-step="1">
+                            <h2 class="gt-booking-heading text-center">Inspektionstermin buchen</h2>
+                            <div class="gt-booking-card gt-booking-split">
+                                <div class="gt-booking-split-col">
+                                    <h3>Fahrzeugschein hochladen</h3>
+                                    <p>Am schnellsten geht es mit einem Foto Ihres Fahrzeugscheins. Wir lesen
+                                        alle Angaben daraus ab.</p>
+                                    <ul class="gt-booking-list">
+                                        <li>Foto oder Scan der Vorderseite</li>
+                                        <li>Alle Angaben gut lesbar</li>
+                                        <li>Format JPEG, PNG, WebP oder PDF</li>
+                                    </ul>
                                     <div class="form-clt">
                                         <span>Fahrzeugschein</span>
-                                        <input type="file" name="attachment" id="attachment-et" accept="image/*,.pdf">
-                                        <p class="gt-anfrage-hint">Foto oder PDF hochladen – oder die Daten
-                                            unten manuell eingeben.</p>
+                                        <input type="file" name="fahrzeugschein" id="sa-fahrzeugschein"
+                                            accept="image/jpeg,image/png,image/webp,.pdf">
                                     </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <div class="form-clt">
-                                        <span>Erstzulassung</span>
-                                        <input type="text" name="erstzulassung" id="erstzulassung-et"
-                                            placeholder="TT.MM.JJJJ">
+                                <div class="gt-booking-or"><span>oder</span></div>
+                                <div class="gt-booking-split-col">
+                                    <h3>Fahrzeugdaten eingeben</h3>
+                                    <p>Die Schlüsselnummern finden Sie im Fahrzeugschein unter Feld 2.1 (HSN) und
+                                        2.2 (TSN), die Erstzulassung unter Feld B.</p>
+                                    <div class="row g-3">
+                                        <div class="col-sm-6">
+                                            <div class="form-clt">
+                                                <span>HSN</span>
+                                                <input type="text" name="hsn" id="sa-hsn" maxlength="4"
+                                                    inputmode="numeric" placeholder="z. B. 0005">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-clt">
+                                                <span>TSN</span>
+                                                <input type="text" name="tsn" id="sa-tsn" maxlength="3"
+                                                    placeholder="z. B. ABC">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-clt">
+                                                <span>Erstzulassung</span>
+                                                <input type="text" name="erstzulassung" id="sa-erstzulassung"
+                                                    placeholder="TT.MM.JJJJ">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-clt">
+                                                <span>Kilometerstand</span>
+                                                <input type="text" name="kilometerstand" id="sa-km" inputmode="numeric"
+                                                    placeholder="z. B. 120000">
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-clt">
-                                        <span>HSN</span>
-                                        <input type="text" name="hsn" id="hsn-et" placeholder="z. B. 0005"
-                                            maxlength="4">
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-clt">
-                                        <span>TSN</span>
-                                        <input type="text" name="tsn" id="tsn-et" placeholder="z. B. ABC" maxlength="3">
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-clt">
-                                        <span>Nachricht</span>
-                                        <textarea name="message" id="message-et"
-                                            placeholder="Welche Teile benötigen Sie?"></textarea>
-                                    </div>
-                                </div>
-
-                                <div class="col-12">
-                                    <h4 class="gt-service-form-title">Persönliche Daten</h4>
-                                </div>
-                                <div class="col-12">
-                                    <div class="gt-anfrage-checks">
-                                        <label><input type="radio" name="anrede" value="Herr"> Herr</label>
-                                        <label><input type="radio" name="anrede" value="Frau"> Frau</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-clt">
-                                        <span>Vorname*</span>
-                                        <input type="text" name="vorname" id="vorname-et" required>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-clt">
-                                        <span>Nachname*</span>
-                                        <input type="text" name="nachname" id="nachname-et" required>
-                                    </div>
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="form-clt">
-                                        <span>Straße <small>(optional)</small></span>
-                                        <input type="text" name="strasse" id="strasse-et">
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-clt">
-                                        <span>Hausnummer</span>
-                                        <input type="text" name="hausnummer" id="hausnummer-et">
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-clt">
-                                        <span>PLZ <small>(optional)</small></span>
-                                        <input type="text" name="plz" id="plz-et" inputmode="numeric" maxlength="5">
-                                    </div>
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="form-clt">
-                                        <span>Ort <small>(optional)</small></span>
-                                        <input type="text" name="ort" id="ort-et">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-clt">
-                                        <span>E-Mail-Adresse*</span>
-                                        <input type="email" name="email" id="email-et" required>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-clt">
-                                        <span>Telefonnummer <small>(optional)</small></span>
-                                        <input type="tel" name="telefon" id="telefon-et">
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="gt-anfrage-consent">
-                                        <label><input type="checkbox" name="agb" value="agb_akzeptiert" required> Ich
-                                            bestätige, die <a href="agb.html">AGB</a> gelesen
-                                            zu haben.*</label>
-                                        <label><input type="checkbox" name="datenschutz" value="datenschutz_akzeptiert"
-                                                required> Die <a href="datenschutz.html">Datenschutzerklärung</a> habe
-                                            ich zur
-                                            Kenntnis genommen.*</label>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="contact-btn">
-                                        <button type="submit" class="gt-theme-btn">
-                                            <span class="gt-text-btn">
-                                                <span class="gt-text-2">NACHRICHT ABSENDEN</span>
-                                            </span>
-                                        </button>
-                                    </div>
+                                    <p class="gt-booking-hint">Ein ungefährer Kilometerstand genügt.</p>
                                 </div>
                             </div>
-                        </form>
-                    </div>
+                            <p class="gt-booking-error" data-error="1"></p>
+                            <div class="gt-booking-actions">
+                                <button type="button" class="gt-theme-btn" data-next>
+                                    <span class="gt-text-btn"><span class="gt-text-2">WEITER</span></span>
+                                </button>
+                            </div>
+                        </div>
 
-                    <!-- Anmeldung HU/AU -->
-                    <div id="huauanfrage" class="tab-pane fade" role="tabpanel">
-                        <form action="#" method="POST" class="gt-anfrage-form">
-                            <input type="hidden" name="subject" value="Anmeldung HU/AU">
+                        <!-- Schritt 2: Abgabe und Service -->
+                        <div class="gt-booking-step" data-step="2">
+                            <button type="button" class="gt-booking-back" data-prev><i
+                                    class="fa-solid fa-chevron-left"></i> Zurück</button>
+
+                            <h3 class="gt-booking-title">Abgabe Ihres Fahrzeugs</h3>
+                            <p>Bringen Sie Ihr Fahrzeug selbst vorbei, oder wir holen es bei Ihnen ab.</p>
+
+                            <h4 class="gt-booking-subtitle">Ich bringe es vorbei</h4>
+                            <label class="gt-booking-option">
+                                <input type="radio" name="abgabe" value="Persönliche Fahrzeugübergabe" checked>
+                                <span class="gt-booking-option-body">
+                                    <span class="gt-booking-option-title">Persönliche Fahrzeugübergabe</span>
+                                    <span class="gt-booking-option-text">Sie übergeben Ihr Fahrzeug zum Termin
+                                        direkt in unserer Werkstatt am Dillinger Weg.</span>
+                                </span>
+                                <span class="gt-booking-option-price">Kostenlos</span>
+                            </label>
+                            <label class="gt-booking-option">
+                                <input type="radio" name="abgabe" value="Ersatzfahrzeug">
+                                <span class="gt-booking-option-body">
+                                    <span class="gt-booking-option-title">Ersatzfahrzeug</span>
+                                    <span class="gt-booking-option-text">Sie bleiben mobil: Für die Dauer des
+                                        Service stellen wir Ihnen ein Ersatzfahrzeug zur Verfügung.</span>
+                                </span>
+                                <span class="gt-booking-option-price">Auf Anfrage</span>
+                            </label>
+                            <label class="gt-booking-option">
+                                <input type="radio" name="abgabe" value="Express-Service">
+                                <span class="gt-booking-option-body">
+                                    <span class="gt-booking-option-title">Express-Service</span>
+                                    <span class="gt-booking-option-text">Für kleinere Arbeiten: Sie warten vor
+                                        Ort, und wir erledigen den Service direkt während Ihres Besuchs.</span>
+                                </span>
+                                <span class="gt-booking-option-price">Auf Anfrage</span>
+                            </label>
+
+                            <h4 class="gt-booking-subtitle">Bitte holen Sie mein Fahrzeug ab</h4>
+                            <label class="gt-booking-option">
+                                <input type="radio" name="abgabe" value="Hol- und Bringservice">
+                                <span class="gt-booking-option-body">
+                                    <span class="gt-booking-option-title">Hol- und Bringservice</span>
+                                    <span class="gt-booking-option-text">Wir holen Ihr Fahrzeug ab und bringen es
+                                        nach dem Service zurück.</span>
+                                </span>
+                                <span class="gt-booking-option-price">Auf Anfrage</span>
+                            </label>
+
+                            <h3 class="gt-booking-title">Gewünschter Service</h3>
+                            <p>Wählen Sie alle Leistungen aus, die wir an Ihrem Fahrzeug durchführen sollen.</p>
+                            <div class="gt-booking-services">
+                                <label class="gt-booking-option"><input type="checkbox" name="servicewunsch[]"
+                                        value="Inspektion"><img src="assets/img/home-1/svg/Inspektion.svg" alt=""><span
+                                        class="gt-booking-option-title">Inspektion</span></label>
+                                <label class="gt-booking-option"><input type="checkbox" name="servicewunsch[]"
+                                        value="HU (mit integrierter AU)"><img src="assets/img/home-1/svg/HU.svg"
+                                        alt=""><span class="gt-booking-option-title">HU (mit integrierter
+                                        AU)</span></label>
+                                <label class="gt-booking-option"><input type="checkbox" name="servicewunsch[]"
+                                        value="Bremsen-Service"><img src="assets/img/home-1/svg/Bremsen.svg"
+                                        alt=""><span class="gt-booking-option-title">Bremsen-Service</span></label>
+                                <label class="gt-booking-option"><input type="checkbox" name="servicewunsch[]"
+                                        value="Öl-Service"><img src="assets/img/home-1/svg/Öl-Service.svg" alt=""><span
+                                        class="gt-booking-option-title">Öl-Service</span></label>
+                                <label class="gt-booking-option"><input type="checkbox" name="servicewunsch[]"
+                                        value="Klima-Service"><img src="assets/img/home-1/svg/Klima-Service.svg"
+                                        alt=""><span class="gt-booking-option-title">Klima-Service</span></label>
+                                <label class="gt-booking-option"><input type="checkbox" name="servicewunsch[]"
+                                        value="Motordiagnose"><img src="assets/img/home-1/svg/Motordiagnose.svg"
+                                        alt=""><span class="gt-booking-option-title">Motordiagnose</span></label>
+                                <label class="gt-booking-option is-extra"><input type="checkbox" name="servicewunsch[]"
+                                        value="Räder und Reifen"><img src="assets/img/home-1/svg/Räder-und-Reifen.svg"
+                                        alt=""><span class="gt-booking-option-title">Räder und Reifen</span></label>
+                                <label class="gt-booking-option is-extra"><input type="checkbox" name="servicewunsch[]"
+                                        value="Reifen-Einlagerung"><img
+                                        src="assets/img/home-1/svg/Reifen-Einlagerung.svg" alt=""><span
+                                        class="gt-booking-option-title">Reifen-Einlagerung</span></label>
+                                <label class="gt-booking-option is-extra"><input type="checkbox" name="servicewunsch[]"
+                                        value="Achsvermessung"><img src="assets/img/home-1/svg/Achsvermessung.svg"
+                                        alt=""><span class="gt-booking-option-title">Achsvermessung</span></label>
+                                <label class="gt-booking-option is-extra"><input type="checkbox" name="servicewunsch[]"
+                                        value="Fahrwerk-Service"><img src="assets/img/home-1/svg/Fahrwerk-Service.svg"
+                                        alt=""><span class="gt-booking-option-title">Fahrwerk-Service</span></label>
+                                <label class="gt-booking-option is-extra"><input type="checkbox" name="servicewunsch[]"
+                                        value="Auspuff-Service"><img src="assets/img/home-1/svg/Auspuff.svg"
+                                        alt=""><span class="gt-booking-option-title">Auspuff-Service</span></label>
+                                <label class="gt-booking-option is-extra"><input type="checkbox" name="servicewunsch[]"
+                                        value="Batterie-Service"><img src="assets/img/home-1/svg/Batterie-Service.svg"
+                                        alt=""><span class="gt-booking-option-title">Batterie-Service</span></label>
+                                <label class="gt-booking-option is-extra"><input type="checkbox" name="servicewunsch[]"
+                                        value="Kfz-Elektrik"><img
+                                        src="assets/img/home-1/svg/Kfz-Elektrik-Elektronik.svg" alt=""><span
+                                        class="gt-booking-option-title">Kfz-Elektrik</span></label>
+                                <label class="gt-booking-option is-extra"><input type="checkbox" name="servicewunsch[]"
+                                        value="Kupplung"><img src="assets/img/home-1/svg/Kupplung.svg" alt=""><span
+                                        class="gt-booking-option-title">Kupplung</span></label>
+                                <label class="gt-booking-option is-extra"><input type="checkbox" name="servicewunsch[]"
+                                        value="Automatikgetriebespülung"><img
+                                        src="assets/img/home-1/svg/Automatikgetriebespülung.svg" alt=""><span
+                                        class="gt-booking-option-title">Automatikgetriebespülung</span></label>
+                                <label class="gt-booking-option is-extra"><input type="checkbox" name="servicewunsch[]"
+                                        value="Autoglasreparatur"><img src="assets/img/home-1/svg/Autoglas-Service.svg"
+                                        alt=""><span class="gt-booking-option-title">Autoglasreparatur</span></label>
+                                <label class="gt-booking-option is-extra"><input type="checkbox" name="servicewunsch[]"
+                                        value="Unfallinstandsetzung"><img
+                                        src="assets/img/home-1/svg/Unfallinstandsetzung.svg" alt=""><span
+                                        class="gt-booking-option-title">Unfallinstandsetzung</span></label>
+                                <label class="gt-booking-option is-extra"><input type="checkbox" name="servicewunsch[]"
+                                        value="Urlaubs-Check"><img src="assets/img/home-1/svg/Urlaubs-Check.svg"
+                                        alt=""><span class="gt-booking-option-title">Urlaubs-Check</span></label>
+                                <label class="gt-booking-option is-extra"><input type="checkbox" name="servicewunsch[]"
+                                        value="Sonstiges"><img src="assets/img/home-1/svg/Sonstige.svg" alt=""><span
+                                        class="gt-booking-option-title">Sonstiges</span></label>
+                            </div>
+                            <button type="button" class="gt-booking-more" data-more aria-expanded="false">
+                                <span>Mehr anzeigen</span> <i class="fa-solid fa-chevron-down"></i>
+                            </button>
+
+                            <h3 class="gt-booking-title">Wie können wir helfen?</h3>
+                            <p>Beschreiben Sie kurz, was gemacht werden soll oder welches Problem Ihnen aufgefallen
+                                ist. Fotos helfen uns, die Arbeit besser einzuschätzen.</p>
+                            <div class="form-clt">
+                                <span>Ihre Nachricht</span>
+                                <textarea name="message" id="sa-nachricht" maxlength="500" rows="5"></textarea>
+                                <p class="gt-booking-counter">Verbleibende Zeichen: <b data-counter>500</b></p>
+                            </div>
+                            <div class="form-clt">
+                                <span>Bilder hochladen <small>(optional, max. 5)</small></span>
+                                <input type="file" name="bilder[]" id="sa-bilder" multiple
+                                    accept="image/jpeg,image/png,image/webp">
+                                <p class="gt-booking-hint">JPEG, PNG oder WebP, höchstens 8 MB pro Bild.</p>
+                            </div>
+                            <p class="gt-booking-error" data-error="2"></p>
+                            <div class="gt-booking-actions">
+                                <button type="button" class="gt-theme-btn" data-next>
+                                    <span class="gt-text-btn"><span class="gt-text-2">WEITER</span></span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Schritt 3: Datum und Uhrzeit -->
+                        <div class="gt-booking-step" data-step="3">
+                            <button type="button" class="gt-booking-back" data-prev><i
+                                    class="fa-solid fa-chevron-left"></i> Zurück</button>
+                            <h3 class="gt-booking-title">Datum und Uhrzeit auswählen</h3>
+                            <p>Wählen Sie Ihren Wunschtermin. Wir bestätigen ihn telefonisch oder per E-Mail.</p>
+
+                            <div class="gt-booking-card gt-booking-calendar-card">
+                                <div class="gt-booking-center">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                    <div>
+                                        <h4>KFZ-Service Buila</h4>
+                                        <p>Dillinger Weg 8-10, 86156 Augsburg</p>
+                                        <ul class="gt-booking-tags">
+                                            <li>Mo - Do 09:00 - 18:00</li>
+                                            <li>Fr 09:00 - 15:30</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="gt-booking-datetime">
+                                    <div class="gt-booking-calendar">
+                                        <h5>Datum auswählen</h5>
+                                        <div class="gt-booking-calendar-head">
+                                            <button type="button" data-month="-1" aria-label="Vorheriger Monat"><i
+                                                    class="fa-solid fa-chevron-left"></i></button>
+                                            <strong data-month-label></strong>
+                                            <button type="button" data-month="1" aria-label="Nächster Monat"><i
+                                                    class="fa-solid fa-chevron-right"></i></button>
+                                        </div>
+                                        <div class="gt-booking-calendar-grid" data-calendar></div>
+                                    </div>
+                                    <div class="gt-booking-times">
+                                        <h5>Uhrzeit auswählen</h5>
+                                        <div class="gt-booking-slots" data-slots>
+                                            <p class="gt-booking-hint">Bitte wählen Sie zuerst ein Datum.</p>
+                                        </div>
+                                        <p class="gt-booking-hint">Kein passender Termin dabei? Rufen Sie uns an:
+                                            <a href="tel:+4982145536636">(0821) 455-366-36</a>.
+                                        </p>
+                                    </div>
+                                </div>
+                                <input type="hidden" name="wunschtermin_datum" id="sa-datum">
+                                <input type="hidden" name="wunschtermin_uhrzeit" id="sa-uhrzeit">
+                            </div>
+                            <p class="gt-booking-error" data-error="3"></p>
+                            <div class="gt-booking-actions">
+                                <button type="button" class="gt-theme-btn" data-next>
+                                    <span class="gt-text-btn"><span class="gt-text-2">WEITER</span></span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Schritt 4: Ihre Informationen -->
+                        <div class="gt-booking-step" data-step="4">
+                            <button type="button" class="gt-booking-back" data-prev><i
+                                    class="fa-solid fa-chevron-left"></i> Zurück</button>
+                            <h3 class="gt-booking-title">Ihre Kontaktdaten</h3>
                             <div class="row g-4">
-                                <div class="col-12">
-                                    <h4 class="gt-service-form-title">Leistung</h4>
-                                </div>
-                                <div class="col-12">
-                                    <div class="gt-anfrage-checks">
-                                        <label><input type="checkbox" name="servicewunsch[]" value="hauptuntersuchung">
-                                            Hauptuntersuchung</label>
-                                        <label><input type="checkbox" name="servicewunsch[]" value="aenderungsabnahme">
-                                            Änderungsabnahme</label>
-                                        <label><input type="checkbox" name="servicewunsch[]" value="h-kennzeichen">
-                                            H-Kennzeichen</label>
-                                        <label><input type="checkbox" name="servicewunsch[]" value="maengelkarte">
-                                            Mängelkarte</label>
-                                    </div>
-                                </div>
-                                <div class="col-12">
+                                <div class="col-md-4">
                                     <div class="form-clt">
-                                        <span>Nachricht</span>
-                                        <textarea name="message" id="message-hu"
-                                            placeholder="Wunschtermin oder Hinweise zum Fahrzeug"></textarea>
+                                        <span>Anrede <small>(optional)</small></span>
+                                        <select name="anrede" id="sa-anrede" class="gt-booking-select">
+                                            <option value="">Bitte wählen</option>
+                                            <option>Herr</option>
+                                            <option>Frau</option>
+                                            <option>Divers</option>
+                                        </select>
                                     </div>
                                 </div>
-
-                                <div class="col-12">
-                                    <h4 class="gt-service-form-title">Persönliche Daten</h4>
-                                </div>
-                                <div class="col-12">
-                                    <div class="gt-anfrage-checks">
-                                        <label><input type="radio" name="anrede" value="Herr"> Herr</label>
-                                        <label><input type="radio" name="anrede" value="Frau"> Frau</label>
-                                    </div>
-                                </div>
+                                <div class="col-md-8"></div>
                                 <div class="col-md-6">
                                     <div class="form-clt">
                                         <span>Vorname*</span>
-                                        <input type="text" name="vorname" id="vorname-hu" required>
+                                        <input type="text" name="vorname" id="sa-vorname" required
+                                            autocomplete="given-name">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-clt">
                                         <span>Nachname*</span>
-                                        <input type="text" name="nachname" id="nachname-hu" required>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-clt">
-                                        <span>Kennzeichen*</span>
-                                        <input type="text" name="kennzeichen" id="kennzeichen-hu"
-                                            placeholder="z. B. A-PM 123" required>
+                                        <input type="text" name="nachname" id="sa-nachname" required
+                                            autocomplete="family-name">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-clt">
                                         <span>Telefonnummer*</span>
-                                        <input type="tel" name="telefon" id="telefon-hu" required>
+                                        <input type="tel" name="telefon" id="sa-telefon" required autocomplete="tel">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-clt">
+                                        <span>E-Mail-Adresse*</span>
+                                        <input type="email" name="email" id="sa-email" required autocomplete="email">
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    <div class="gt-anfrage-consent">
-                                        <label><input type="checkbox" name="agb" value="agb_akzeptiert" required> Ich
-                                            bestätige, die <a href="agb.html">AGB</a> gelesen
-                                            zu haben.*</label>
-                                        <label><input type="checkbox" name="datenschutz" value="datenschutz_akzeptiert"
-                                                required> Die <a href="datenschutz.html">Datenschutzerklärung</a> habe
-                                            ich zur
-                                            Kenntnis genommen.*</label>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="contact-btn">
-                                        <button type="submit" class="gt-theme-btn">
-                                            <span class="gt-text-btn">
-                                                <span class="gt-text-2">JETZT ANMELDEN</span>
-                                            </span>
-                                        </button>
-                                    </div>
+                                    <label class="gt-booking-consent">
+                                        <input type="checkbox" name="einwilligung" value="ja" required>
+                                        <span>Ich willige ein, dass KFZ-Service Buila meine Angaben speichert und
+                                            verwendet, um meine Anfrage zu bearbeiten und mich dazu zu
+                                            kontaktieren.*</span>
+                                    </label>
                                 </div>
                             </div>
-                        </form>
+                            <p class="gt-booking-error" data-error="4"></p>
+                            <div class="gt-booking-actions">
+                                <button type="button" class="gt-theme-btn" data-next>
+                                    <span class="gt-text-btn"><span class="gt-text-2">WEITER</span></span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Schritt 5: Zusammenfassung -->
+                        <div class="gt-booking-step" data-step="5">
+                            <button type="button" class="gt-booking-back" data-prev><i
+                                    class="fa-solid fa-chevron-left"></i> Zurück</button>
+                            <h3 class="gt-booking-title">Prüfen und absenden</h3>
+                            <p>Stimmen alle Angaben? Dann senden Sie uns Ihre Anfrage. Wir melden uns mit einem
+                                Terminvorschlag und einem Kostenvoranschlag.</p>
+                            <div class="gt-booking-summary-list" data-summary></div>
+                            <p class="gt-booking-note">* Den Preis nennen wir Ihnen nach Prüfung Ihrer Anfrage.
+                                Erst mit unserer Bestätigung ist der Termin verbindlich.</p>
+                            <div class="gt-booking-total"><span>Summe:</span><span>Preisanfrage*</span></div>
+                            <p class="gt-booking-error" data-error="5"></p>
+                            <div class="gt-booking-actions">
+                                <button type="submit" class="gt-theme-btn">
+                                    <span class="gt-text-btn"><span class="gt-text-2">ANFRAGE SENDEN</span></span>
+                                </button>
+                            </div>
+                        </div>
                     </div>
+
+                    <!-- Zusammenfassung (Schritte 2 bis 4) -->
+                    <aside class="gt-booking-aside">
+                        <div class="gt-booking-card">
+                            <h3 class="gt-booking-aside-title">Zusammenfassung</h3>
+                            <div class="gt-booking-summary-list" data-summary></div>
+                            <div class="gt-booking-total"><span>Summe:</span><span>Preisanfrage*</span></div>
+                        </div>
+                    </aside>
                 </div>
-            </div>
+            </form>
         </div>
     </section>
 
@@ -1013,6 +1000,7 @@
     <script src="assets/js/ajax-mail.js"></script>
     <!--<< Main.js >>-->
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/serviceanfrage.js"></script>
 </body>
 
 </html>

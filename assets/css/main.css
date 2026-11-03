@@ -55,7 +55,6 @@ Version: 1.0.0
 .gt-theme-btn {
   color: var(--gt-white);
   overflow: hidden;
-  transition: 700ms;
   position: relative;
   vertical-align: middle;
   -webkit-appearance: none;
@@ -75,7 +74,6 @@ Version: 1.0.0
   border-radius: 4px;
   position: relative;
   overflow: hidden;
-  transition: all 700ms ease;
   text-transform: uppercase;
   z-index: 99;
 }
@@ -91,7 +89,6 @@ Version: 1.0.0
   right: 0px;
   background-color: var(--gt-header);
   z-index: -1;
-  transition: all 500ms ease;
 }
 .gt-theme-btn .gt-icon-btn {
   background-color: var(--gt-theme);
@@ -100,7 +97,6 @@ Version: 1.0.0
   display: inline-block;
   position: relative;
   overflow: hidden;
-  transition: all 500ms ease;
   z-index: 99;
 }
 .gt-theme-btn .gt-icon-btn::after {
@@ -112,13 +108,9 @@ Version: 1.0.0
   right: 0px;
   background-color: var(--gt-header);
   z-index: -1;
-  transition: all 500ms ease;
 }
 .gt-theme-btn .gt-icon-btn i {
   display: inline-block;
-}
-.gt-theme-btn:hover .gt-text-btn .gt-text-2 {
-  animation: slideRight 600ms;
 }
 .gt-theme-btn:hover .gt-text-btn::after {
   width: 100%;
@@ -127,9 +119,6 @@ Version: 1.0.0
 .gt-theme-btn:hover .gt-icon-btn::after {
   width: 100%;
   left: 0px;
-}
-.gt-theme-btn:hover .gt-icon-btn i {
-  animation: slideRight 500ms;
 }
 .gt-theme-btn.style-2 .gt-text-btn {
   background-color: var(--gt-header);
@@ -1926,6 +1915,617 @@ span {
 .gt-service-form-block {
   margin-bottom: 48px;
 }
+/* Step counter above the service form: numbered circles joined by a line,
+   the active step is filled and the line runs half-way to the next one */
+.gt-service-steps {
+  margin-bottom: 48px;
+}
+.gt-service-steps ol {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.gt-service-steps li {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.gt-service-steps li:not(:first-child)::before {
+  content: "";
+  position: absolute;
+  top: 13px;
+  right: 50%;
+  width: 100%;
+  height: 2px;
+  background-color: var(--gt-text);
+}
+.gt-service-steps li.is-active + li::before {
+  background: linear-gradient(90deg, var(--gt-theme) 50%, var(--gt-text) 50%);
+}
+.gt-service-steps .num {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: 2px solid var(--gt-text);
+  border-radius: 50%;
+  background-color: var(--gt-white);
+  color: var(--gt-text);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1;
+}
+.gt-service-steps .label {
+  margin-top: 12px;
+  color: var(--gt-header);
+  font-size: 16px;
+  line-height: 1.3;
+}
+.gt-service-steps li.is-active .num {
+  border-color: var(--gt-theme);
+  background-color: var(--gt-theme);
+  color: var(--gt-white);
+}
+.gt-service-steps li.is-active .label {
+  font-weight: 700;
+}
+@media (max-width: 575px) {
+  .gt-service-steps .label {
+    font-size: 12px;
+  }
+}
+/* Finished steps: check mark, blue line, clickable to go back */
+.gt-service-steps li.is-done {
+  cursor: pointer;
+}
+.gt-service-steps li.is-done + li::before {
+  background: var(--gt-theme);
+}
+.gt-service-steps li.is-active + li.is-done::before {
+  background: var(--gt-theme);
+}
+.gt-service-steps li.is-done .num {
+  border-color: var(--gt-theme);
+  color: var(--gt-theme);
+  font-size: 0;
+}
+.gt-service-steps li.is-done .num::before {
+  content: "\f00c";
+  font-family: "Font Awesome 6 Pro";
+  font-weight: 900;
+  font-size: 11px;
+}
+
+/* ==========================================================
+   Serviceanfrage: 5-step request form (serviceanfrage.html)
+   Uses the theme colours, fonts, buttons and field sizes.
+   ========================================================== */
+.gt-booking-section .gt-service-steps {
+  max-width: 1000px;
+  margin: 0 auto 60px;
+}
+.gt-booking-step {
+  display: none;
+}
+.gt-booking-step.is-active {
+  display: block;
+}
+.gt-booking-layout {
+  display: grid;
+  gap: 40px;
+}
+.gt-booking-aside {
+  display: none;
+}
+.gt-booking-layout.has-aside {
+  grid-template-columns: minmax(0, 1fr) 380px;
+}
+.gt-booking-layout.has-aside .gt-booking-aside {
+  display: block;
+  position: sticky;
+  top: 120px;
+  align-self: start;
+}
+@media (max-width: 1199px) {
+  .gt-booking-layout.has-aside {
+    grid-template-columns: minmax(0, 1fr) 320px;
+  }
+}
+@media (max-width: 991px) {
+  .gt-booking-layout.has-aside {
+    grid-template-columns: 1fr;
+  }
+  .gt-booking-layout.has-aside .gt-booking-aside {
+    position: static;
+  }
+}
+.gt-booking-heading {
+  margin-bottom: 30px;
+}
+.gt-booking-card {
+  padding: 40px;
+  border-radius: 8px;
+  background-color: #F2F2F2;
+}
+@media (max-width: 575px) {
+  .gt-booking-card {
+    padding: 24px;
+  }
+}
+.gt-booking h3,
+.gt-booking h4,
+.gt-booking h5 {
+  text-transform: none;
+}
+.gt-booking-title {
+  font-size: 32px;
+  margin: 50px 0 10px;
+}
+.gt-booking-back + .gt-booking-title {
+  margin-top: 0;
+}
+.gt-booking-subtitle {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 30px 0 16px;
+}
+.gt-booking-hint {
+  font-size: 14px;
+  margin: 8px 0 0;
+}
+.gt-booking-list {
+  margin: 20px 0 30px;
+}
+.gt-booking-list li {
+  position: relative;
+  padding-left: 22px;
+}
+.gt-booking-list li:not(:last-child) {
+  margin-bottom: 10px;
+}
+.gt-booking-list li::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: 4px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--gt-theme);
+}
+
+/* Fields: same sizes as the theme's contact form, white with the light-background border */
+.gt-booking .form-clt span {
+  display: inline-block;
+  margin-bottom: 10px;
+  color: var(--gt-header);
+  font-size: 18px;
+  font-weight: 600;
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+.gt-booking .form-clt span small {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--gt-text);
+}
+.gt-booking .form-clt input,
+.gt-booking .form-clt textarea,
+.gt-booking .form-clt select {
+  width: 100%;
+  padding: 16px 20px;
+  border: 1px solid #E4E4E5;
+  border-radius: 8px;
+  outline: none;
+  background-color: var(--gt-white);
+  color: var(--gt-text);
+  font-size: 16px;
+  transition: all 0.4s ease-in-out;
+}
+.gt-booking .form-clt input:focus,
+.gt-booking .form-clt textarea:focus,
+.gt-booking .form-clt select:focus {
+  border-color: var(--gt-theme);
+}
+.gt-booking .form-clt input[type=file] {
+  padding: 12px 20px;
+  cursor: pointer;
+}
+.gt-booking .form-clt textarea {
+  resize: vertical;
+}
+.gt-booking .form-clt + .form-clt {
+  margin-top: 24px;
+}
+.gt-booking-counter {
+  margin: 6px 0 0;
+  font-size: 14px;
+  text-align: right;
+}
+.gt-booking-actions {
+  margin-top: 30px;
+}
+.gt-booking-error {
+  margin: 20px 0 0;
+  color: #C62828;
+  font-weight: 600;
+}
+.gt-booking-error:empty {
+  display: none;
+}
+.gt-booking-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 24px;
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--gt-theme);
+  font-weight: 700;
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+/* Step 1: upload or enter the vehicle data, split by "oder" */
+.gt-booking-split {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 40px;
+}
+.gt-booking-split h3 {
+  font-size: 26px;
+  margin-bottom: 8px;
+}
+.gt-booking-or {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  color: var(--gt-header);
+  font-size: 22px;
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+.gt-booking-or::before,
+.gt-booking-or::after {
+  content: "";
+  flex: 1;
+  width: 1px;
+  background-color: #C9C9C9;
+}
+@media (max-width: 991px) {
+  .gt-booking-split {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .gt-booking-or {
+    flex-direction: row;
+  }
+  .gt-booking-or::before,
+  .gt-booking-or::after {
+    width: auto;
+    height: 1px;
+  }
+}
+
+/* Step 2: selectable cards (radio for the hand-over, checkboxes for the services) */
+.gt-booking-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 16px;
+  padding: 22px 24px;
+  border: 1px solid #E4E4E5;
+  border-radius: 8px;
+  background-color: var(--gt-white);
+  cursor: pointer;
+  transition: all 0.4s ease-in-out;
+}
+.gt-booking-option:hover,
+.gt-booking-option:has(input:checked) {
+  border-color: var(--gt-theme);
+}
+.gt-booking-option input {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  margin-top: 3px;
+  accent-color: var(--gt-theme);
+}
+.gt-booking-option-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+.gt-booking-option-title {
+  color: var(--gt-theme);
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.3;
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+.gt-booking-option-text {
+  font-size: 15px;
+}
+.gt-booking-option-price {
+  flex-shrink: 0;
+  margin-left: auto;
+  color: var(--gt-header);
+  font-weight: 700;
+  white-space: nowrap;
+}
+.gt-booking-services {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+.gt-booking-services .gt-booking-option {
+  align-items: center;
+  margin-bottom: 0;
+}
+.gt-booking-services .gt-booking-option input {
+  margin-top: 0;
+}
+.gt-booking-services .gt-booking-option img {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+}
+.gt-booking-services .gt-booking-option-title {
+  font-size: 18px;
+}
+.gt-booking-services .is-extra {
+  display: none;
+}
+.gt-booking-services.is-open .is-extra {
+  display: flex;
+}
+@media (max-width: 767px) {
+  .gt-booking-services {
+    grid-template-columns: 1fr;
+  }
+}
+.gt-booking-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 24px;
+  padding: 10px 26px;
+  border: 1.2px solid var(--gt-theme);
+  border-radius: 30px;
+  background-color: var(--gt-white);
+  color: var(--gt-theme);
+  font-weight: 700;
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+.gt-booking-more i {
+  transition: transform 0.3s ease-in-out;
+}
+.gt-booking-more[aria-expanded=true] i {
+  transform: rotate(180deg);
+}
+
+/* Step 3: service centre, calendar and time slots */
+.gt-booking-calendar-card {
+  margin-top: 30px;
+  padding: 0;
+  border: 1px solid var(--gt-theme);
+  background-color: var(--gt-white);
+}
+.gt-booking-center {
+  display: flex;
+  gap: 16px;
+  padding: 30px;
+  border-bottom: 1px solid #E4E4E5;
+}
+.gt-booking-center > i {
+  color: var(--gt-theme);
+  font-size: 22px;
+  margin-top: 4px;
+}
+.gt-booking-center h4 {
+  color: var(--gt-theme);
+  font-size: 22px;
+  margin-bottom: 4px;
+}
+.gt-booking-center p {
+  margin: 0;
+}
+.gt-booking-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+.gt-booking-tags li {
+  padding: 4px 12px;
+  border-radius: 4px;
+  background-color: #F2F2F2;
+  color: var(--gt-header);
+  font-size: 14px;
+}
+.gt-booking-datetime {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 40px;
+  padding: 30px;
+}
+@media (max-width: 767px) {
+  .gt-booking-datetime {
+    grid-template-columns: 1fr;
+  }
+}
+.gt-booking-datetime h5 {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+.gt-booking-calendar-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+.gt-booking-calendar-head strong {
+  color: var(--gt-header);
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+.gt-booking-calendar-head button {
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: 50%;
+  background: none;
+  color: var(--gt-theme);
+}
+.gt-booking-calendar-head button:disabled {
+  opacity: 0.3;
+}
+.gt-booking-calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  text-align: center;
+}
+.gt-booking-calendar-grid .is-weekday {
+  color: var(--gt-header);
+  font-size: 14px;
+  font-weight: 600;
+}
+.gt-booking-calendar-grid button {
+  aspect-ratio: 1;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  background: none;
+  color: var(--gt-theme);
+  font-size: 16px;
+  font-weight: 600;
+  transition: all 0.3s ease-in-out;
+}
+.gt-booking-calendar-grid button:hover:not(:disabled) {
+  border-color: var(--gt-theme);
+}
+.gt-booking-calendar-grid button:disabled {
+  color: #B5B5B5;
+  font-weight: 400;
+  text-decoration: line-through;
+  cursor: default;
+}
+.gt-booking-calendar-grid button.is-today {
+  border-color: #C9C9C9;
+}
+.gt-booking-calendar-grid button.is-selected {
+  border-color: var(--gt-theme);
+  background-color: var(--gt-theme);
+  color: var(--gt-white);
+}
+.gt-booking-slots {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.gt-booking-slots .gt-booking-hint {
+  grid-column: 1 / -1;
+  margin: 0;
+}
+.gt-booking-slots button {
+  padding: 10px 0;
+  border: 1px solid var(--gt-theme);
+  border-radius: 4px;
+  background-color: var(--gt-white);
+  color: var(--gt-theme);
+  font-size: 15px;
+  font-weight: 600;
+  transition: all 0.3s ease-in-out;
+}
+.gt-booking-slots button:hover,
+.gt-booking-slots button.is-selected {
+  background-color: var(--gt-theme);
+  color: var(--gt-white);
+}
+
+/* Step 4: consent */
+.gt-booking-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  cursor: pointer;
+}
+.gt-booking-consent input {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  margin-top: 4px;
+  accent-color: var(--gt-theme);
+}
+
+/* Summary: right column on steps 2-4 and the full list on step 5 */
+.gt-booking-aside-title {
+  font-size: 28px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #D5D5D5;
+}
+.gt-booking-summary-item {
+  padding: 20px 0;
+  border-bottom: 1px solid #D5D5D5;
+}
+.gt-booking-summary-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+.gt-booking-summary-head h4 {
+  font-size: 20px;
+}
+.gt-booking-summary-head a {
+  color: var(--gt-theme);
+  font-size: 14px;
+  text-decoration: underline;
+}
+.gt-booking-summary-item p {
+  margin: 4px 0 0;
+  font-size: 15px;
+  overflow-wrap: anywhere;
+}
+.gt-booking-summary-item p.has-value {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+.gt-booking-summary-item p.has-value b {
+  flex-shrink: 0;
+  color: var(--gt-header);
+}
+.gt-booking-step .gt-booking-summary-list {
+  margin-top: 30px;
+  border-top: 1px solid #D5D5D5;
+}
+.gt-booking-total {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 24px;
+  padding: 20px 24px;
+  border-radius: 4px;
+  background-color: var(--gt-theme);
+  color: var(--gt-white);
+  font-size: 24px;
+  font-weight: 600;
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+.gt-booking-note {
+  margin: 24px 0 0;
+  font-size: 14px;
+}
 .gt-service-form-title {
   display: flex;
   align-items: center;
@@ -1934,13 +2534,66 @@ span {
   text-transform: none;
   margin-bottom: 30px;
 }
-/* Serviceanfrage: the three tabs above the card share its full width equally */
+/* Serviceanfrage: folder-style tabs, joined edge to edge across the card's width;
+   the active tab shares the card's light background and merges into it */
+.gt-contact-section .gt-anfrage-tabs {
+  flex-wrap: nowrap;
+  gap: 0;
+  margin-bottom: 0;
+}
 .gt-contact-section .gt-anfrage-tabs .nav-item {
   flex: 1;
 }
+.gt-contact-section .gt-anfrage-tabs .nav-item + .nav-item {
+  margin-left: -1px;
+}
 .gt-contact-section .gt-anfrage-tabs .nav-item .nav-link {
+  position: relative;
   width: 100%;
   justify-content: center;
+  padding: 18px 24px;
+  border: 1px solid #E4E4E5;
+  border-bottom: none;
+  border-radius: 8px 8px 0 0;
+  background-color: var(--gt-white);
+  color: var(--gt-text);
+}
+.gt-contact-section .gt-anfrage-tabs .nav-item .nav-link:hover {
+  background-color: var(--gt-white);
+  color: var(--gt-theme);
+}
+.gt-contact-section .gt-anfrage-tabs .nav-item .nav-link:hover i {
+  color: var(--gt-theme);
+}
+.gt-contact-section .gt-anfrage-tabs .nav-item .nav-link.active {
+  z-index: 1;
+  background-color: #F2F2F2;
+  border-color: #F2F2F2;
+  border-top: 3px solid var(--gt-theme);
+  color: var(--gt-header);
+}
+.gt-contact-section .gt-anfrage-tabs .nav-item .nav-link.active i {
+  color: var(--gt-theme);
+}
+/* Card joins the tabs: no rounded top corners, same background as the active tab */
+.gt-contact-section + .gt-contact-us-section .gt-contact-us-wrapper {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  background-color: #F2F2F2;
+}
+@media (max-width: 767px) {
+  .gt-contact-section .gt-anfrage-tabs .nav-item .nav-link {
+    flex-direction: column;
+    gap: 6px;
+    padding: 14px 8px;
+    font-size: 13px;
+    text-align: center;
+  }
+}
+@media (max-width: 575px) {
+  .gt-contact-section .gt-anfrage-tabs .nav-item {
+    width: auto;
+  }
 }
 .gt-anfrage-form h4.gt-service-form-title {
   padding-bottom: 0;
@@ -3130,6 +3783,32 @@ span {
   opacity: 0.7;
   color: var(--gt-white);
 }
+/* index-1: call box in place of the template's person card */
+.gt-why-choose-wrapper .gt-why-choose-content.style-2 .gt-feature-list-box .gt-call-box {
+  display: block;
+  transition: border-color 0.3s ease-in-out;
+}
+.gt-why-choose-wrapper .gt-why-choose-content.style-2 .gt-feature-list-box .gt-call-box:hover {
+  border-color: var(--gt-yellow);
+}
+.gt-call-box .gt-call-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background-color: var(--gt-theme);
+  color: var(--gt-white);
+  font-size: 24px;
+}
+.gt-call-box > span:last-child {
+  display: block;
+  margin-top: 4px;
+  font-size: 14px;
+  color: var(--gt-white);
+  opacity: 0.7;
+}
 .gt-why-choose-wrapper .gt-why-choose-content.style-2 .gt-feature-list-box .gt-list li {
   font-size: 20px;
   font-weight: 600;
@@ -4206,6 +4885,10 @@ span {
   display: flex;
   align-items: center;
   gap: 16px;
+}
+/* Header button: no line box around the inner inline-block, so it centres with the 56px icon boxes */
+.header-1 .header-right .gt-theme-btn {
+  display: flex;
 }
 .header-1 .header-right .header-right-icon .search-toggler {
   color: var(--gt-header);
@@ -11157,3 +11840,163 @@ span {
   justify-content: space-between;
   margin-top: 25px;
 }/*# sourceMappingURL=main.css.map */
+/* ==========================================================
+   KI-Assistent (index-1.html #servicezeiten): intro left, chat window right
+   ========================================================== */
+.gt-chat-suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 30px;
+}
+.gt-chat-suggestions button {
+  padding: 10px 18px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 30px;
+  background: none;
+  color: var(--gt-white);
+  font-size: 15px;
+  text-align: left;
+  transition: all 0.3s ease-in-out;
+}
+.gt-chat-suggestions button:hover {
+  border-color: var(--gt-yellow);
+  color: var(--gt-yellow);
+}
+.gt-chat-hours {
+  margin-top: 30px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 15px;
+}
+.gt-chat-hours li:not(:last-child) {
+  margin-bottom: 6px;
+}
+.gt-chat-hours span {
+  display: inline-block;
+  min-width: 170px;
+  color: var(--gt-white);
+  font-weight: 600;
+}
+.gt-chat-hours a {
+  color: rgba(255, 255, 255, 0.8);
+}
+.gt-chat-hours a:hover {
+  color: var(--gt-yellow);
+}
+.gt-chat {
+  display: flex;
+  flex-direction: column;
+  height: 560px;
+  overflow: hidden;
+  border-radius: 8px;
+  background-color: var(--gt-white);
+  box-shadow: var(--gt-box-shadow);
+}
+@media (max-width: 575px) {
+  .gt-chat {
+    height: 480px;
+  }
+}
+.gt-chat-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 24px;
+  background-color: var(--gt-theme);
+}
+.gt-chat-head h4 {
+  margin: 0;
+  color: var(--gt-white);
+  font-size: 18px;
+  text-transform: none;
+}
+.gt-chat-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: var(--gt-white);
+  color: var(--gt-theme);
+  font-size: 20px;
+}
+.gt-chat-status {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 14px;
+}
+.gt-chat-status::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: 6px;
+  border-radius: 50%;
+  background-color: #4CD964;
+}
+.gt-chat-messages {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px;
+  background-color: #F2F2F2;
+}
+.gt-chat-msg {
+  max-width: 80%;
+  padding: 12px 16px;
+  border-radius: 12px;
+  font-size: 15px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+.gt-chat-msg.is-bot {
+  align-self: flex-start;
+  border-bottom-left-radius: 4px;
+  background-color: var(--gt-white);
+  color: var(--gt-header);
+}
+.gt-chat-msg.is-user {
+  align-self: flex-end;
+  border-bottom-right-radius: 4px;
+  background-color: var(--gt-theme);
+  color: var(--gt-white);
+}
+.gt-chat-msg.is-typing {
+  color: var(--gt-text);
+  letter-spacing: 2px;
+}
+.gt-chat-form {
+  display: flex;
+  gap: 10px;
+  padding: 16px;
+  border-top: 1px solid #E4E4E5;
+}
+.gt-chat-form input {
+  flex: 1;
+  min-width: 0;
+  padding: 14px 18px;
+  border: 1px solid #E4E4E5;
+  border-radius: 30px;
+  outline: none;
+  color: var(--gt-header);
+  font-size: 15px;
+}
+.gt-chat-form input:focus {
+  border-color: var(--gt-theme);
+}
+.gt-chat-form button {
+  flex-shrink: 0;
+  width: 50px;
+  height: 50px;
+  border: none;
+  border-radius: 50%;
+  background-color: var(--gt-theme);
+  color: var(--gt-white);
+  font-size: 18px;
+}
+.gt-chat-form button:hover {
+  background-color: var(--gt-header);
+}
