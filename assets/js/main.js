@@ -99,7 +99,10 @@
         speed: 3000,
         loop: true,
         slidesPerView: 1,
-        autoplay: true,
+        autoplay: {
+            delay: 10000,
+            disableOnInteraction: false,
+        },
         effect: 'fade',
         breakpoints: {
             '1600': {
